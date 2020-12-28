@@ -9,14 +9,13 @@ import { catchError } from 'rxjs/operators';
 export class RegisterService {
 
   registerUrl : string = "http://localhost:3000/auth/register";
-  schoolRegisterUrl : string = "http://localhost:3000/auth/register/student?id=3";
+  schoolRegisterUrl : string = "http://localhost:3000/auth/register/school";
   studentRegisterUrl : string = "http://localhost:3000/auth/register/student";
   constructor(private http : HttpClient) {
 
   }
 
-  params = new HttpParams()
-    .set('id', '3');
+
   createUser(data:any) : Observable<any> {
     return this.http.post<any>(this.registerUrl,data).pipe(
         catchError(this.handelError)
@@ -28,7 +27,7 @@ export class RegisterService {
     );
   }
   asignUserToStudent(data:any) : Observable<any> {
-    return this.http.post<any>(this.studentRegisterUrl,this.params,data).pipe(
+    return this.http.post<any>(this.studentRegisterUrl+'/'+data.userId,data).pipe(
         catchError(this.handelError)
     );
   }

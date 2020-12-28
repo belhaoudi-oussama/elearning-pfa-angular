@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SchoolRegistrationComponent } from './school-registration/school-registration.component';
+import { SchoolRegistrationGuard } from './school-registration/school-registration.guard';
 import { StudentRegistrationComponent } from './student-registration/student-registration.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 
@@ -11,14 +12,14 @@ const routes: Routes = [
     component :  UserRegistrationComponent
   },
   {
-    path : 'school-registration' ,
+    path : 'school_registration/:id' ,
+    canActivate : [SchoolRegistrationGuard],
     component :  SchoolRegistrationComponent
   },
   {
-    path : 'student-registration' ,
+    path : 'student_registration/:id' ,
     component :  StudentRegistrationComponent
   },
-  { path: '' , redirectTo: 'sign-in', pathMatch: 'full' },
   { path: '**', redirectTo: 'pages/404' },
 ];
 

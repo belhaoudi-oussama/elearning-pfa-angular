@@ -8,21 +8,16 @@ import * as moment from 'moment'
   providedIn: 'root'
 })
 export class AuthService {
-  signInUrl = 'http://localhost:3000/api/admin/employee'
   constructor(private http : HttpClient) {
 
   }
-
-  signIn(data:any) : Observable<any> {
-    return this.http.post<any>(this.signInUrl,data).pipe(
-        catchError(this.handelError)
-    );
-  }
-
   setLocalStorage(resObj : any){
       const expire = moment().add(resObj.expiresIn);
       localStorage.setItem('token',resObj.token);
       localStorage.setItem('expires',JSON.stringify(expire.valueOf()));
+      localStorage.setItem('email', resObj.email);
+      localStorage.setItem('firstname',resObj.firstname);
+      localStorage.setItem('lastname',resObj.lastname);
   }
   logout(){
     localStorage.removeItem('token');
@@ -30,7 +25,7 @@ export class AuthService {
   }
   getExpiration(){
     const expires = localStorage.getItem('expires');
-    const expiresAt = JSON.parse(expires || '');
+    const expiresAt = JSON.parse(expires || 'null');
     return moment(expiresAt);
   }
   isSignIn(){
@@ -39,7 +34,7 @@ export class AuthService {
   isSignOut(){
     return !this.isSignIn();
   }
-  private handelError(err : HttpErrorResponse){
+ /* private handelError(err : HttpErrorResponse){
     let errorMssg='';
     if (err.error instanceof ErrorEvent) {
         errorMssg = `ER => ${err.error.message}`;
@@ -48,5 +43,5 @@ export class AuthService {
     }
     console.error(errorMssg);
     return throwError(errorMssg);
-}
+}*/
 }
