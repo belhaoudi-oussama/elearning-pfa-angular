@@ -1,1 +1,28 @@
-<p>school-registration works!</p>
+<div class="login-container">
+  <div>
+      <mat-card class="box">
+
+        <mat-card-header>
+             <mat-card-title>Registre as school</mat-card-title>
+        </mat-card-header>
+
+        <form class="example-form" #registerSchoolForm="ngForm" (ngSubmit)="onSubmit(registerSchoolForm)">
+          <mat-card-content>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Enter School Name</mat-label>
+              <input matInput type="text" name="SchoolNameControle" #SchoolNameControle="ngModel" [(ngModel)]="newSchool.schoolName" required>
+              <mat-error *ngIf="SchoolNameControle.hasError('required')">
+                School Name is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+                  <input type="file"  (change)="onFileSelected($event)">
+                  <mat-error *ngIf="picExist==0">
+                    School Logo is <strong>required</strong>
+                  </mat-error>
+          </mat-card-content>
+          <div align="center"><button type="submit" mat-stroked-button color="green" class="btn-block"  >Log in</button></div>
+        </form>
+      </mat-card>
+
+    </div>
+</div>

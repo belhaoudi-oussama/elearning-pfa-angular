@@ -4,7 +4,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 
 const routes: Routes = [
   {
-    path : 'sign-in' ,
+    path : 'sign_in' ,
     component :  SignInComponent
   },
   {
@@ -12,7 +12,7 @@ const routes: Routes = [
     loadChildren: () => import('./register/register.module')
       .then(m => m.RegisterModule),
   },
-  { path: '' , redirectTo: 'sign-in', pathMatch: 'full' },
+  { path: '' , redirectTo: 'sign_in', pathMatch: 'full' },
   { path: '**', redirectTo: 'pages/404' },
 ];
 

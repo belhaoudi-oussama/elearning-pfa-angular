@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SchoolRegistrationComponent } from './school-registration/school-registration.component';
 import { SchoolRegistrationGuard } from './school-registration/school-registration.guard';
 import { StudentRegistrationComponent } from './student-registration/student-registration.component';
+import { StudentRegistrationGuard } from './student-registration/student-registration.guard';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   },
   {
     path : 'student_registration/:id' ,
+    canActivate : [StudentRegistrationGuard],
     component :  StudentRegistrationComponent
   },
   { path: '**', redirectTo: 'pages/404' },

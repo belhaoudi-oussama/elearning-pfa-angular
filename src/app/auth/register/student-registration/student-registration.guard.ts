@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class SchoolRegistrationGuard implements CanActivate {
+export class StudentRegistrationGuard implements CanActivate {
   constructor(private router: Router) {
 
   }
@@ -17,7 +17,7 @@ export class SchoolRegistrationGuard implements CanActivate {
   checkPreviousUrl(){
     let previous :string|undefined;
     previous = this.router.getCurrentNavigation()?.previousNavigation?.extractedUrl.toString();
-    if(previous=='/auth/register'||previous=='/auth/sign_in'){
+    if(previous=='/auth/register'|| previous=='/auth/sign_in'){
       return true;
     }
     return false;

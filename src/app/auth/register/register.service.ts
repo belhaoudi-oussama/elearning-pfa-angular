@@ -21,13 +21,13 @@ export class RegisterService {
         catchError(this.handelError)
     );
   }
-  asignUserToSchool(data:any) : Observable<any> {
-    return this.http.post<any>(this.schoolRegisterUrl,data).pipe(
+  asignUserToSchool(data:any,userId:string | undefined) : Observable<any> {
+    return this.http.post<any>(`${this.schoolRegisterUrl}/${userId}`,data).pipe(
         catchError(this.handelError)
     );
   }
-  asignUserToStudent(data:any) : Observable<any> {
-    return this.http.post<any>(this.studentRegisterUrl+'/'+data.userId,data).pipe(
+  asignUserToStudent(data:any,userId:string | undefined) : Observable<any> {
+    return this.http.post<any>(`${this.studentRegisterUrl}/${userId}`,data).pipe(
         catchError(this.handelError)
     );
   }

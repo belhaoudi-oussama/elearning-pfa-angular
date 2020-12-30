@@ -1,1 +1,45 @@
-<p>student-registration works!</p>
+<div class="login-container">
+  <div>
+      <mat-card class="box">
+
+        <mat-card-header>
+             <mat-card-title>Registre as Student</mat-card-title>
+        </mat-card-header>
+
+        <form class="example-form" #registerStudentForm="ngForm" (ngSubmit)="onSubmit(registerStudentForm)">
+          <mat-card-content>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Enter your firstname</mat-label>
+              <input matInput type="text" name="firstNameStudentControle" [(ngModel)]="newStudent.firstName" #firstNameStudentControle="ngModel" required>
+              <mat-error *ngIf="firstNameStudentControle.hasError('required')">
+                FirstName is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Enter your lastname</mat-label>
+                  <input matInput type="text" name="lastNameStudentControle" [(ngModel)]="newStudent.lastName" #lastNameStudentControle="ngModel" required>
+                  <mat-error *ngIf="lastNameStudentControle.hasError('required')">
+                    LastName is <strong>required</strong>
+                  </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Enter your phoneNumber</mat-label>
+                  <input matInput type="text" name="phoneStudentControle" [(ngModel)]="newStudent.phoneNumber" #phoneStudentControle="ngModel" pattern="^[0-9]+$" required>
+                  <mat-error *ngIf="phoneStudentControle.errors?.pattern && !phoneStudentControle.hasError('required')">
+                    Please enter a valid Phone Number
+                  </mat-error>
+                  <mat-error *ngIf="lastNameStudentControle.hasError('required')">
+                    Phone Number is <strong>required</strong>
+                  </mat-error>
+            </mat-form-field>
+                  <input type="file" name="picStudentControle" (change)="onFileSelected($event)" required>
+                  <mat-error *ngIf="picExist==0">
+                    Profile picture is <strong>required</strong>
+                  </mat-error>
+          </mat-card-content>
+          <div align="center"><button type="submit" mat-stroked-button color="green" class="btn-block"  >Submit</button></div>
+        </form>
+      </mat-card>
+
+    </div>
+</div>

@@ -22,10 +22,11 @@ export class SignInComponent implements OnInit {
   constructor(private signIn:SignInService ,private auth:AuthService,private route:Router ) { }
 
   signInProcesses(data :any){
-    if(!data.regCompleted){
+    console.log(data);
+    if(data.regCompleted === false){
         let type = `${data.type}_registration`
-        this.route.navigate([`/auth/${type}`,data.id]);
-    }else{
+        this.route.navigate([`/auth/register/${type}`,data.id]);
+    }else if(data.regCompleted === true){
         this.auth.setLocalStorage(data);
         this.route.navigate(['/home']);
     }
@@ -39,11 +40,10 @@ export class SignInComponent implements OnInit {
       }
       this.signIn.signInPost(data).subscribe(
         next=>{
-            console.log(next);
             if(next.success){
               this.BackEndError=false;
               this.errorMessage='';
-              this.signInProcesses(data);
+              this.signInProcesses(next);
             }
         },
         error=>{
